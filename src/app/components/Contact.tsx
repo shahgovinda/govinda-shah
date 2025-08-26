@@ -1,5 +1,3 @@
-contact.tsx
-
 import React, { useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Label } from "./ui/label";
