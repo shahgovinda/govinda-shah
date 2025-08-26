@@ -27,9 +27,9 @@ const Projects: React.FC = () => {
             name: "GoTreats",
             img: '/gotreats.png',
             description: "Food Service based web app with fully payment integration, order tracking.",
-            tech: ['React', 'Typescript', 'Node.js'],
-            url: 'https://food-self-sigma.vercel.app/',
-            source: 'https://github.com/shahgovinda/food'
+            tech: ['React', 'Typescript', 'Node.js','Tailwind CSS'],
+            url: 'https://gotreats.in/',
+            source: 'https://github.com/shahgovinda/gotreatsf'
         },
         // {
         //     name: "Skill Swap Landing Page",
