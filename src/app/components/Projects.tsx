@@ -31,15 +31,15 @@ const Projects: React.FC = () => {
             url: 'https://gotreats.in/',
             source: 'https://github.com/shahgovinda/gotreatsf'
         },
-        // {
-        //     name: "Skill Swap Landing Page",
-        //     img: '/skillswap.png',
-        //     description: "A Landing Page of Skill Exchange Platform",
-        //     tech: ['React', 'HTML', 'JavaScript', 'Tailwind CSS'],
-        //     url: 'https://skill-swap-landing-page.vercel.app',
-        //     source: 'https://github.com/yuvrajv-77/Skill-Swap-Landing-Page'
+        {
+            name: "labProChemicals",
+            img: '/labprochem.png',
+            description: "A Chemical based company where all chemical information has been display",
+            tech: ['React','JavaScript', 'Tailwind CSS','Cloud Firestore'],
+            url: 'https://labprochem.com/',
+            source: 'https://github.com/yuvrajv-77/labpro-chem'
 
-        // },
+        },
         // {
         //     name: "Portfolio",
         //     img: '/portfolio.png',
