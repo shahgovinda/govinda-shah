@@ -1,49 +1,96 @@
-import React from 'react';
+contact.tsx
+
+import React, { useEffect, useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 import { BackgroundBeams } from './ui/background-beams';
+import { Textarea } from './ui/textarea';
 
-export function ContactInfo() {
-  return (
-    <div className='mx-auto py-48 px-9 relative overflow-hidden'>
-      <BackgroundBeams />
-      
-      <div id='contactme' className='max-w-[40rem] mx-auto z-10 text-center space-y-16'>
-        
-        <h1 className='text-4xl md:text-6xl font-bold text-white'>Connect with me</h1>
-        
-        <div className='bg-zinc-900/50 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-zinc-700/50 shadow-2xl'>
-          
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12'>
-            
-            <div className='flex flex-col items-center justify-center space-y-2'>
-              <h2 className='text-xl text-gray-400 font-medium'>Phone</h2>
-              <a 
-                href="tel:7045617506" 
-                className='text-2xl md:text-3xl font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-300'
-              >
-                +91 7045617506
-              </a>
+export function ContactForm() {
+    const [state, handleSubmit] = useForm("xovajpoa");
+    const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        if (state.succeeded) {
+            console.log(state);
+            setSuccess(true);
+        }
+    },[state.succeeded])
+
+    return (
+        <div className=' mx-auto py-48 px-9 relative overflow-hidden' >
+            <BackgroundBeams />
+            <div id='contactme' className='max-w-[40rem]   mx-auto'>
+                {success ? (
+                    <div className='max-w-[40rem] border mx-auto h-[50rem] py-50 gap-9 flex flex-col justify-center items-center px-9'>
+                        <p></p>
+                        <h1 className='text-4xl md:text-6xl font-semibold'>Thank You!</h1>
+                        <p>I have received your submission</p>
+                    </div>
+                ) : (
+                    <span className='space-y-24'>
+                    <h1 className=' text-4xl md:text-6xl font-bold text-center'>Connect with me</h1>
+                    <div>
+                        <form className='flex flex-col gap-9 ' onSubmit={handleSubmit}>
+                            <div className='space-y-3 z-10'>
+                                <Label htmlFor="firstname" className=''>Name</Label>
+                                <Input id="name" placeholder="Enter Your Name" type="text" name="name" />
+                                <ValidationError
+                                    prefix="Name"
+                                    field="name"
+                                    errors={state.errors}
+                                />
+                            </div>
+                            <div className='space-y-3 z-10'>
+                                <Label htmlFor="email">Email</Label>
+                                <Input id="email" placeholder="Enter Your Email" type="email" name="email" />
+                                <ValidationError
+                                    prefix="Email"
+                                    field="email"
+                                    errors={state.errors}
+                                    className='text-red-400 text-center'
+                                />
+                            </div>
+                            <div className='space-y-3 z-10'>
+                                <Label htmlFor="message">Message</Label>
+                                <Textarea id="message" placeholder="Enter Your Message" name="message" />
+                                <ValidationError
+                                    prefix="Message"
+                                    field="message"
+                                    errors={state.errors}
+                                />
+                            </div>
+
+                            <button
+                                className="  relative group/btn from-zinc-900 to-zinc-900  block bg-zinc-800 w-full text-white rounded-xl py-3 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)inset,0px-1px_0px_0px_var(--zinc-800)_inset]"
+                                type="submit"
+                                disabled={state.submitting}
+                            >
+                                Submit
+                                <BottomGradient />
+                            </button>
+
+
+                        </form>
+                    </div>
+                </span>
+                )}
+                
+
             </div>
 
-            <div className='flex flex-col items-center justify-center space-y-2'>
-              <h2 className='text-xl text-gray-400 font-medium'>Email</h2>
-              <a 
-                href="mailto:govindashah603@gmail.com" 
-                className='text-2xl md:text-3xl font-semibold text-indigo-400 hover:text-indigo-300 transition-colors duration-300'
-              >
-                govindashah603@gmail.com
-              </a>
-            </div>
 
-          </div>
-          
         </div>
 
-        <p className="text-gray-500 font-light text-base md:text-lg">
-          I look forward to hearing from you and discussing potential collaborations!
-        </p>
-        
-      </div>
-      
-    </div>
-  );
+    );
 }
+
+const BottomGradient = () => {
+    return (
+        <>
+            <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+            <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+        </>
+    );
+};
